@@ -1,0 +1,23 @@
+{
+  "name": "cli-minirpg",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/santospatrick/cli-minirpg.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bin": {
+    "cli-minirpg": "./index.js"
+  },
+  "bugs": {
+    "url": "https://github.com/santospatrick/cli-minirpg/issues"
+  },
+  "homepage": "https://github.com/santospatrick/cli-minirpg#readme"
+}
