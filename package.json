@@ -1,6 +1,6 @@
 {
   "name": "cli-minirpg",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "fast & fun minigame directly in your terminal",
   "main": "index.js",
   "scripts": {
@@ -27,7 +27,6 @@
     "figlet": "^1.2.0"
   },
   "devDependencies": {
-    "clear": "0.0.1",
     "clui": "^0.3.1",
     "eslint": "^3.16.1",
     "eslint-config-standard": "^6.2.1",

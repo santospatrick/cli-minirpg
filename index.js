@@ -8,6 +8,10 @@ const clear = require('clear')
 const CLI = require('clui')
 const Spinner = CLI.Spinner
 
+console.reset = function () {
+  return process.stdout.write('\033c')
+}
+
 console.log(
   chalk.green(
     figlet.textSync('MINIRPG', {
@@ -47,7 +51,7 @@ questions.push(userName, worldsList)
 
 let start = inquirer.prompt(questions)
   .then(function (answers) {
-    clear()
+    console.reset()
     console.log('Chosen username: ' + answers.username)
     console.log('Chosen world: ' + answers.world)
     var countdown = new Spinner('Travelling in 3 seconds...')
