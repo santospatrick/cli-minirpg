@@ -4,7 +4,6 @@ const chalk = require('chalk')
 const figlet = require('figlet')
 const inquirer = require('inquirer')
 const worlds = require('./game/worlds/index.js')
-const clear = require('clear')
 const CLI = require('clui')
 const Spinner = CLI.Spinner
 

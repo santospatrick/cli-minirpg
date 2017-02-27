@@ -1,6 +1,6 @@
 {
   "name": "cli-minirpg",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "fast & fun minigame directly in your terminal",
   "main": "index.js",
   "scripts": {
