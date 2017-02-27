@@ -27,9 +27,12 @@
     "figlet": "^1.2.0"
   },
   "devDependencies": {
+    "clear": "0.0.1",
+    "clui": "^0.3.1",
     "eslint": "^3.16.1",
     "eslint-config-standard": "^6.2.1",
     "eslint-plugin-promise": "^3.4.2",
-    "eslint-plugin-standard": "^2.0.1"
+    "eslint-plugin-standard": "^2.0.1",
+    "inquirer": "^3.0.4"
   }
 }
