@@ -3,12 +3,29 @@
 const chalk = require('chalk')
 const figlet = require('figlet')
 const inquirer = require('inquirer')
-const worlds = require('./game/worlds/index.js')
+const worlds = require('./game/index.js')
 const CLI = require('clui')
+const clear = require('clear')
 const Spinner = CLI.Spinner
 
-console.reset = function () {
-  return process.stdout.write('\033c')
+let availableWorlds = worlds.filter(function (obj) {
+  return obj.status === 'Available'
+})
+
+let travelCountdown = function (seconds) {
+  var number = seconds
+
+  var countdown = new Spinner('Travelling in ' + number + ' seconds...')
+  countdown.start()
+
+  setInterval(function () {
+    number--
+    countdown.message('Travelling in ' + number + ' seconds...  ')
+    if (number === 0) {
+      process.stdout.write('\n')
+      process.exit(0)
+    }
+  }, 1000)
 }
 
 console.log(
@@ -41,7 +58,7 @@ let worldsList = {
   type: 'list',
   name: 'world',
   message: 'choose a world to trip: ',
-  choices: worlds
+  choices: availableWorlds
 }
 
 let questions = []
@@ -50,19 +67,10 @@ questions.push(userName, worldsList)
 
 let start = inquirer.prompt(questions)
   .then(function (answers) {
-    console.reset()
+    clear()
+
     console.log('Chosen username: ' + answers.username)
     console.log('Chosen world: ' + answers.world)
-    var countdown = new Spinner('Travelling in 3 seconds...')
-    countdown.start()
 
-    var number = 3
-    setInterval(function () {
-      number--
-      countdown.message('Travelling in ' + number + ' seconds...  ')
-      if (number === 0) {
-        process.stdout.write('\n')
-        process.exit(0)
-      }
-    }, 1000)
+    travelCountdown(3)
   })
