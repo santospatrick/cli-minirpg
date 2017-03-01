@@ -13,19 +13,30 @@ let availableWorlds = worlds.filter(function (obj) {
 })
 
 let travelCountdown = function (seconds) {
-  var number = seconds
+  clear()
 
-  var countdown = new Spinner('Travelling in ' + number + ' seconds...')
-  countdown.start()
+  if (arguments.length === 0) {
+    console.log('you forgot to pass numbers to \'travelCountdown()\'')
+    process.exit(0)
+  }
 
-  setInterval(function () {
-    number--
-    countdown.message('Travelling in ' + number + ' seconds...  ')
-    if (number === 0) {
-      process.stdout.write('\n')
-      process.exit(0)
-    }
-  }, 1000)
+  return new Promise(function (resolve, reject) {
+    var number = seconds
+
+    var travelSpinner = new Spinner('Travelling in ' + number + ' seconds...')
+    travelSpinner.start()
+
+    var countdown = setInterval(function () {
+      number--
+      travelSpinner.message('Travelling in ' + number + ' seconds...  ')
+      if (number === 0) {
+        clearInterval(countdown)
+        process.stdout.write('\n')
+        clear()
+        resolve()
+      }
+    }, 1000)
+  })
 }
 
 console.log(
@@ -67,10 +78,9 @@ questions.push(userName, worldsList)
 
 let start = inquirer.prompt(questions)
   .then(function (answers) {
-    clear()
-
-    console.log('Chosen username: ' + answers.username)
-    console.log('Chosen world: ' + answers.world)
-
     travelCountdown(3)
+      .then(function () {
+        console.log('Hey ' + answers.username + ', Welcome to ' + answers.world + '!')
+        process.exit(0)
+      })
   })
